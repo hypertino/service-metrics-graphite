@@ -5,7 +5,7 @@ import eu.inn.metrics.{Metrics, ProcessMetrics}
 
 import scala.io.StdIn
 
-object TestMain extends GraphiteReporterModule("test-service") {
+object TestMain extends GraphiteReporterModule {
   bind [Config] to ConfigFactory.load()
 
   def main(args: Array[String]): Unit = {

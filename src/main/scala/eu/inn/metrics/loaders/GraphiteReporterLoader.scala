@@ -22,19 +22,23 @@ case class GraphiteOptions(enabled: Boolean,
 
 class GraphiteReporterLoader(options: GraphiteOptions, registry: MetricRegistry) extends MetricsReporterLoader {
   val log = LoggerFactory.getLogger(getClass)
-  def this(config: Config, registry: MetricRegistry) = this(config.getValue("graphite").read[GraphiteOptions], registry)
+  def this(config: Config, registry: MetricRegistry) = this(config.getValue("graphite-reporter").read[GraphiteOptions], registry)
 
   def run() : Unit = {
-    val prefix = Seq(options.prefix, Try{
-      InetAddress.getLocalHost.getHostName
-    } getOrElse {
-      "unknown-host"
-    }.replaceAll("\\.", "-") + options.hostSuffix.fold("")("-" + _)).filter(_.trim.nonEmpty).mkString(".")
+    if (options.enabled) {
+      val prefix = Seq(options.prefix, Try {
+        InetAddress.getLocalHost.getHostName
+      } getOrElse {
+        "unknown-host"
+      }.replaceAll("\\.", "-") + options.hostSuffix.fold("")("-" + _)).filter(_.trim.nonEmpty).mkString(".")
 
-    log.info(s"Starting graphite reporter / $options")
+      log.info(s"Starting graphite reporter / $options")
 
-    val graphite = new Graphite(options.host, options.port)
-    val reporter = GraphiteReporter.forRegistry(registry).prefixedWith(prefix).build(graphite)
-    reporter.start(options.reportPeriod.toMillis, TimeUnit.MILLISECONDS)
+      val graphite = new Graphite(options.host, options.port)
+      val reporter = GraphiteReporter.forRegistry(registry).prefixedWith(prefix).build(graphite)
+      reporter.start(options.reportPeriod.toMillis, TimeUnit.MILLISECONDS)
+    } else {
+      log.info("Graphite reporter is disabled")
+    }
   }
 }
