@@ -1,21 +1,20 @@
-import sbt.Keys._
-
 name := "service-metrics-graphite"
 
-version := "0.2"
+version := "0.3-SNAPSHOT"
 
-organization := "eu.inn"
+organization := "com.hypertino"
 
-scalaVersion := "2.11.8"
+scalaVersion := "2.12.1"
 
-crossScalaVersions := Seq("2.11.8")
+crossScalaVersions := Seq("2.12.1", "2.11.8")
+
+libraryDependencies ++= Seq(
+  "io.dropwizard.metrics" % "metrics-graphite" % "3.2.2",
+  "com.hypertino" %% "service-metrics" % "0.3-SNAPSHOT",
+  "com.hypertino" %% "typesafe-config-binders" % "0.13-SNAPSHOT",
+  "org.slf4j" % "slf4j-api" % "1.7.21"
+)
 
 resolvers ++= Seq(
   Resolver.sonatypeRepo("public")
-)
-
-libraryDependencies ++= Seq(
-  "io.dropwizard.metrics" % "metrics-graphite" % "3.1.0",
-  "eu.inn" %% "service-metrics" % "0.2.9",
-  "eu.inn" %% "binders-typesafe-config" % "0.12.13"
 )

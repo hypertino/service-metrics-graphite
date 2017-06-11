@@ -1,6 +1,6 @@
-package eu.inn.metrics.modules
+package com.hypertino.metrics.modules
 
-import eu.inn.metrics.loaders.{GraphiteReporterLoader, MetricsReporterLoader}
+import com.hypertino.metrics.loaders.{GraphiteReporterLoader, MetricsReporterLoader}
 
 class GraphiteReporterModule extends MetricsModule {
   bind [MetricsReporterLoader] to injected[GraphiteReporterLoader]

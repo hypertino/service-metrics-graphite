@@ -1,7 +1,7 @@
+import com.hypertino.metrics.loaders.MetricsReporterLoader
+import com.hypertino.metrics.{MetricsTracker, ProcessMetrics}
+import com.hypertino.metrics.modules.GraphiteReporterModule
 import com.typesafe.config.{Config, ConfigFactory}
-import eu.inn.metrics.loaders.MetricsReporterLoader
-import eu.inn.metrics.modules.GraphiteReporterModule
-import eu.inn.metrics.{MetricsTracker, ProcessMetrics}
 
 import scala.io.StdIn
 

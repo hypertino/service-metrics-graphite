@@ -1,4 +1,4 @@
-package eu.inn.metrics.loaders
+package com.hypertino.metrics.loaders
 
 import java.net.InetAddress
 import java.util.concurrent.TimeUnit
@@ -6,7 +6,7 @@ import java.util.concurrent.TimeUnit
 import com.codahale.metrics.MetricRegistry
 import com.codahale.metrics.graphite.{Graphite, GraphiteReporter}
 import com.typesafe.config.Config
-import eu.inn.binders.tconfig._
+import com.hypertino.binders.config.ConfigBinders._
 import org.slf4j.LoggerFactory
 
 import scala.concurrent.duration.Duration
