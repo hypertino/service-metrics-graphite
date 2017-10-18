@@ -1,6 +1,6 @@
 name := "service-metrics-graphite"
 
-version := "0.3-SNAPSHOT"
+version := "0.3.0"
 
 organization := "com.hypertino"
 
