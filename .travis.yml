@@ -1,16 +1,27 @@
 language: scala
+
 scala:
-- 2.12.1
-- 2.11.8
+  - 2.12.3
+  - 2.11.11
+
 sudo: false
-script: $TRAVIS_BUILD_DIR/travis/build.sh
+script: $TRAVIS_BUILD_DIR/travis/script/build.sh
+
 jdk:
-- oraclejdk8
+  - oraclejdk8
+
 cache:
   directories:
   - $HOME/.m2
   - $HOME/.ivy2
   - $HOME/.sbt
+
+git:
+  submodules: false
+before_install:
+  - sed -i 's/git@github.com:/https:\/\/github.com\//' .gitmodules
+  - git submodule update --init --recursive
+
 env:
   global:
   - secure: S3H0kMZ4rAqVe8KxKzVoC7G59CDRS3bRuTTOgKbSc3SnzoM+WiLEL6kfPKJRjfbIiw6nGQNFj3sQlfHbpTAbEr1ZO3o05IyUGMkGZx7fC4bGuGvifsrLbR5sX3MNrQoAjJMF50PQMJdBNn4Cu5Ka+BmXmCfnUC6lxqkWpVdOCSNtUuKp9mL3R1CTZT0jUyh2F9SVmZTFQx/xebf0WmnFVSTo8l0uRJXHa4tzNi439fXysc9c5TJpSses9BRbxxFDG2Wkyxr3d5vmjZ7RnfMFu/NZWW/89kfok5KPh61UOPDfAijbsigNd2Fpy7Gkk6g0PCGhZbDJ19y7HEIszvKAbrby62bZZHog+UK2e1nA16TLygovOWezFILdta4l1r+03n/j4eV8oQe63ak+/fZOmCk/Ka9YfYd7xfY8O2gEdmReaLx73zKzuIspeZlNCm25yxx3aAAvejHDQqcBGLLmlc0XUw/tdcm3yC/XW1FtMh/8UiHb0nVv+1R9Y4w7HRIkgAd1NXIQ+addnSOJRvoapCI/6XAHPKCBduXC/yUKieyguzrWT971ckGMP1LTVrLyZ1XjRnlswCqXhROd5RxJMmcCoTHWY3LalodR7tceBGpdTGN2lTVlVKE+2dIIkdAwvH32rSMKNmeSOuIMNA4kCFx0smCYoL3Q0vsNBPCdvlo=
